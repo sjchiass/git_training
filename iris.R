@@ -1,17 +1,19 @@
+# Pivot and summarize R dataframe
+#
+# Requirements: tidyverse
+# Tested in R 3.6.2
+library(tidyr)
+library(dplyr)
+
 # Pivot iris dataset
-iris_pivot <- lapply(X = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"),
-                     FUN = function(x) {
-                       data.frame(Species = iris$Species,
-                                  Measure = x,
-                                  Value = iris[[x]])
-                       })
-iris_pivot <- do.call(rbind, iris_pivot)
+iris_pivot <- pivot_longer(iris,
+                           cols = c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"),
+                           names_to = "Measure")
 
 # Calculate means of each Species and Measure combination
-means <- aggregate(x = iris_pivot$Value,
-          by = list(Species = iris_pivot$Species,
-                    Measure = iris_pivot$Measure),
-          FUN = mean)
+means <- group_by(iris_pivot, Species, Measure)
+means <- summarise_all(means, mean)
+means <- ungroup(means)
 
 # Show results
-print(means)
+View(means)
