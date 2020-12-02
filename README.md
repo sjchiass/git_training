@@ -20,4 +20,23 @@ If you've been working on the same code, you will have to choose which pieces of
 
 ### Quiz
 
+#### Setup
 
+This repository has three branches: `merge_init`, `merge_a` and `merge_b`. Your goal is to merge `merge_a` and `merge_b` together.
+
+What happened is that someone wrote an example script in base R on `merge_init`. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths.
+
+#### Goal
+
+Merge `merge_a` and `merge_b` together while choosing the pieces of code you like most.
+
+Hint: here is how you would start this on the command-line, assuming you're already in the repo folder
+
+```
+git checkout merge_a
+git merge merge_b
+```
+
+#### Solutions
+
+[See solutions](./merge_solutions.md)
