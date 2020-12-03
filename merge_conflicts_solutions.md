@@ -2,16 +2,17 @@
 
 - [FAQ](#faq)
 - [Command-line](#command-line)
+- [Command-line with a different diff style](#command-line-with-a-different-diff-style)
 
 ## FAQ
 
   * Why did this merge not happen automatically?
-    * If `merge_a` and`merge_b` were in family tree, they would not be parent-child they would be siblings. Git does not know which to favour so it lets you decide.
+    * If `merge_a` and`merge_b` were in a family tree, they would not be parent and child but rather siblings. Git does not know which to favour so it lets you decide.
   * Why did some parts of the code merge automatically?
-    * You can see this happen in the last line of `iris.R`. The `View()` of `merge_a` is accepted automatically.
-    * The merge is done line-by-line. Since `merge_b` keeps the old `print()` statement but `merge_a` changes it to `View()`, the `View()` is a direct descendant of `print()` and is automatically kept.
+    * The merge is done line-by-line. If one branch doesn't change a line but the other does, the changed line is the direct descendant of the original. Git accepts it automatically.
+    * You can see this happen in the last line of `iris.R`. The `View()` of `merge_a` is accepted automatically because `merge_b` did not change the `print()` call.
   * Does the direction of the merge matter?
-    * Not in this case, but it may matter in others. Whichever branch is the most "mainstream" one ought to be the target. You always want to merge your feature branches into your main branch.
+    * Not in this case, but it may matter in others. Whichever branch is the most "mainstream" one ought to be the target. You always want to merge your feature branch into your main branch.
 
 ## Command-line
 
@@ -95,7 +96,9 @@ iris_pivot <- iris %>%
 View(means)
 ```
 
-Do the same for `README.md`. When you're done, treat this as any commit.
+Do the same for `README.md`. When you're done, treat this as any other commit.
+
+:rotating_light: Just like any other commit, *test your code before you commit!* :rotating_light:
 
 ```console
 $ git add .
@@ -104,3 +107,55 @@ $ git commit -m "Merge of merge_b into merge_a"
 ```
 
 If you look at the commit graph, you'll see that the two branches have fused together into a new commit.
+
+## Command-line with a different diff style
+
+As seen in [this Stack Overflow post](https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository/7589612#7589612), you can use a different style for the markers.
+
+```console
+$ git config merge.conflictstyle diff3
+```
+
+Then
+
+```console
+ git merge merge_b
+Auto-merging iris.R
+CONFLICT (content): Merge conflict in iris.R
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+There are now different markers
+  * `<<<<<<< HEAD` is the start of your current branch `merge_a`.
+  * `||||||| acf402a` is the start of the common ancestor `merge_init`
+  * `=======` marks the end of `merge_init` and the start of `merge_b`. It's a separator.
+  * `>>>>>>> merge_b` marks the end of `merge_b`, which is the source branch.
+
+Below is an abridged version of `iris.R`. You can see how you're able to see the three different ways of calculating the means.
+
+```
+<<<<<<< HEAD
+# Calculate means of each Species and Measure combination
+means <- group_by(iris_pivot, Species, Measure)
+means <- summarise_all(means, mean)
+means <- ungroup(means)
+||||||| acf402a
+# Calculate means of each Species and Measure combination
+means <- aggregate(x = iris_pivot$Value,
+          by = list(Species = iris_pivot$Species,
+                    Measure = iris_pivot$Measure),
+          FUN = mean)
+=======
+# Pivot and summarize
+iris_pivot <- iris %>%
+  pivot_longer(-Species, "Measure") %>%
+  group_by(Species, Measure) %>%
+  summarise_all(mean) %>%
+  ungroup()
+>>>>>>> merge_b
+
+# Show results
+View(means)
+```

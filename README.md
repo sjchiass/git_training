@@ -91,7 +91,7 @@ If you've been working on the same code, you will have to choose which pieces of
 ### Best of Stack Overflow
 
   * [What is git fast forwarding](https://stackoverflow.com/questions/29673869/what-is-git-fast-forwarding)
-  * [Resolving merge conflicts in a text editor](https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository/7589612#7589612)
+  * [How to resolve conflicts in a text editor and other merge advice](https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository/7589612#7589612)
 
 ### Quiz: simple merge :thinking:
 
