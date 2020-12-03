@@ -1,9 +1,8 @@
-# Git training
+# Git training <!-- omit in toc -->
 
-- [Git training](#git-training)
-  - [Getting started](#getting-started)
-    - [Your very own git lab](#your-very-own-git-lab)
-    - [Caution](#caution)
+- [Getting started](#getting-started)
+  - [Your very own git lab](#your-very-own-git-lab)
+  - [Caution](#caution)
   - [View the raw files](#view-the-raw-files)
 - [Topics](#topics)
   - [Merging branches with and without conflicts](#merging-branches-with-and-without-conflicts)
@@ -14,9 +13,9 @@
       - [Goal](#goal)
       - [Solutions](#solutions)
 
-## Getting started
+# Getting started
 
-### Your very own git lab
+## Your very own git lab
 
 This repository includes its own examples, which are used in the exercises below. You can get all of these by simply pasting the following into your command line (or Bash for Windows):
 
@@ -30,7 +29,7 @@ The repository with all of its extras will appear in a folder called `git_traini
 
 Don't worry about breaking anything! You can always delete the `git_training` folder and `clone` yourself a replacement.
 
-### Caution
+## Caution
 
 Avoid downloading the zip directly! Zip download will only download files, not the git repository. You will not have all of the git extras including branches and history!
 
