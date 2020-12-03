@@ -1,6 +1,43 @@
 # Git training
 
-## Merging branches with conflicts
+## Getting started
+
+### Your very own git lab
+
+This repository includes its own examples, which are used in the exercises below. You can get all of these by simply pasting the following into your command line (or Bash for Windows):
+
+```
+git clone https://github.com/sjchiass/git_training.git
+```
+
+![Cloning in Ubuntu](./images/clone_success.png)
+
+The repository with all of its extras will appear in a folder called `git_training`.
+
+Don't worry about breaking anything! You can always delete the `git_training` folder and `clone` yourself a replacement.
+
+### Caution
+
+Avoid downloading the zip directly! Zip download will only download files, not the git repository. You will not have all of the git extras including branches and history!
+
+![Avoid the Zip download](./images/download_zip_beware.png)
+
+## View the raw files
+
+This repository includes branches that are used for the exercises below. These branches are also available as folders in the default branch of this repository.
+
+You can also view these branches in the [raw_branches subfolder](./raw_branches).
+
+If you wanted to recreate one of these branches,
+
+  * use `git checkout -b my_new_branch` to start a new branch
+  * delete everything in the repo (except the `.git` folder)
+  * paste the contents of the raw folder
+  * then `git commit -m "Made new branch"`
+
+# Topics
+
+## Merging branches with and without conflicts
 
 When you're collaborating with others on a git repository, you'll each be working in branches and eventually you'll want to merge them together.
 
