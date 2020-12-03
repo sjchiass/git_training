@@ -1,26 +1,35 @@
 # Git training <!-- omit in toc -->
 
-- [Getting started](#getting-started)
-  - [Your very own git lab](#your-very-own-git-lab)
+- [Start here :bulb:](#start-here-bulb)
+  - [How to copy this to your computer](#how-to-copy-this-to-your-computer)
   - [Caution](#caution)
   - [View the raw files](#view-the-raw-files)
 - [Topics](#topics)
   - [Merging branches with and without conflicts](#merging-branches-with-and-without-conflicts)
     - [Documentation](#documentation)
     - [Best of Stack Overflow](#best-of-stack-overflow)
-    - [Quiz](#quiz)
+    - [Quiz: simple merge :thinking:](#quiz-simple-merge-thinking)
       - [Setup](#setup)
+      - [Story](#story)
       - [Goal](#goal)
       - [Solutions](#solutions)
+    - [Quiz: merge conflicts :thinking:](#quiz-merge-conflicts-thinking)
+      - [Setup](#setup-1)
+      - [Story](#story-1)
+      - [Goal](#goal-1)
+      - [Solutions](#solutions-1)
 
-# Getting started
+# Start here :bulb:
 
-## Your very own git lab
+## How to copy this to your computer
 
-This repository includes its own examples, which are used in the exercises below. You can get all of these by simply pasting the following into your command line (or Bash for Windows):
+This repository includes its own examples, which are used in the exercises below. In order to get all of this on your computer, you need to use these commands to do a deep clone of the repository ([Stack Overflow](https://stackoverflow.com/a/7216269)):
 
 ```
-git clone https://github.com/sjchiass/git_training.git
+git clone https://github.com/sjchiass/git_training.git ./git_training/.git --mirror
+cd git_training/
+git config --bool core.bare false
+git reset --hard
 ```
 
 ![Cloning in Ubuntu](./images/clone_success.png)
@@ -66,15 +75,36 @@ If you've been working on the same code, you will have to choose which pieces of
 
 ### Best of Stack Overflow
 
+  * [What is git fast forwarding](https://stackoverflow.com/questions/29673869/what-is-git-fast-forwarding)
   * [Resolving merge conflicts in a text editor](https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository/7589612#7589612)
 
-### Quiz
+### Quiz: simple merge :thinking:
 
 #### Setup
 
-This repository has three branches: `merge_init`, `merge_a` and `merge_b`. Your goal is to merge `merge_a` and `merge_b` together.
+This repository has two branches: `merge_init` and `merge_a`.
 
-What happened is that someone wrote an example script in base R on `merge_init`. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths.
+#### Story
+
+You wrote an example script in base R on `merge_init`. One of your colleagues decided to improve the script in the `merge_a` branch. They've let you know that their work is done and you can merge the changes whenever you want. As the project leader, you want to incorporate these changes.
+
+#### Goal
+
+Merge `merge_a` onto `merge_init` so that `merge_init` continues on.
+
+#### Solutions
+
+[See solutions](./merge_solutions.md)
+
+### Quiz: merge conflicts :thinking:
+
+#### Setup
+
+This repository has three branches: `merge_init`, `merge_a` and `merge_b`.
+
+#### Story
+
+You wrote an example script in base R on `merge_init`. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths. As the project leader, you are in charge of 
 
 #### Goal
 
@@ -87,6 +117,8 @@ git checkout merge_a
 git merge merge_b
 ```
 
+![Unable to merge automatically](./images/merge_conflict.png)
+
 #### Solutions
 
-[See solutions](./merge_solutions.md)
+[See solutions](./merge_conflicts_solutions.md)
