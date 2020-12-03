@@ -3,6 +3,7 @@
 - [Start here :bulb:](#start-here-bulb)
   - [How to copy this to your computer](#how-to-copy-this-to-your-computer)
   - [Caution](#caution)
+  - ["Please tell me who you are."](#please-tell-me-who-you-are)
   - [View the raw files](#view-the-raw-files)
 - [Topics](#topics)
   - [Merging branches with and without conflicts](#merging-branches-with-and-without-conflicts)
@@ -43,6 +44,20 @@ Don't worry about breaking anything! You can always delete the `git_training` fo
 Avoid downloading the zip directly! Zip download will only download files, not the git repository. You will not have all of the git extras including branches and history!
 
 ![Avoid the Zip download](./images/download_zip_beware.png)
+
+## "Please tell me who you are."
+
+If git asks you who you are, you haven't set up your profile for the repo. This is normal.
+
+If you're using git for both work and hobby, it's not a good idea to set a global configuration. You might accidentally push to your company's repositories with your personal information.
+
+For these exercises, there's no problem in creating a fake local profile:
+
+```
+git config user.email "someone@example.com" && git config user.name "someone"
+```
+
+The settings will only be applied to your current repository.
 
 ## View the raw files
 
