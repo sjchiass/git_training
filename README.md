@@ -101,11 +101,11 @@ This repository has two branches: `merge_init` and `merge_a`.
 
 #### Story
 
-You wrote an example script in base R on `merge_init`. One of your colleagues decided to improve the script in the `merge_a` branch. They've let you know that their work is done and you can merge the changes whenever you want. As the project leader, you want to incorporate these changes.
+You wrote an example script in base R on `merge_init` and then forgot about it. One of your colleagues decided to improve the script in the `merge_a` branch. They've let you know that their work is done and you can merge the changes whenever you want. As the project leader, you want to incorporate these changes to the main branch.
 
 #### Goal
 
-Merge `merge_a` onto `merge_init` so that `merge_init` continues on.
+Merge `merge_a` onto `merge_init`.
 
 #### Solutions
 
@@ -119,7 +119,7 @@ This repository has three branches: `merge_init`, `merge_a` and `merge_b`.
 
 #### Story
 
-You wrote an example script in base R on `merge_init`. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths. As the project leader, you are in charge of 
+You wrote an example script in base R on `merge_init` and then forgot about it. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths. As the project leader, you are in charge of choosing what to keep.
 
 #### Goal
 
