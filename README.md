@@ -1,5 +1,19 @@
 # Git training
 
+- [Git training](#git-training)
+  - [Getting started](#getting-started)
+    - [Your very own git lab](#your-very-own-git-lab)
+    - [Caution](#caution)
+  - [View the raw files](#view-the-raw-files)
+- [Topics](#topics)
+  - [Merging branches with and without conflicts](#merging-branches-with-and-without-conflicts)
+    - [Documentation](#documentation)
+    - [Best of Stack Overflow](#best-of-stack-overflow)
+    - [Quiz](#quiz)
+      - [Setup](#setup)
+      - [Goal](#goal)
+      - [Solutions](#solutions)
+
 ## Getting started
 
 ### Your very own git lab
