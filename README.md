@@ -3,22 +3,13 @@
 - [Start here :bulb:](#start-here-bulb)
   - [How to copy this to your computer](#how-to-copy-this-to-your-computer)
   - [Caution](#caution)
-  - ["Please tell me who you are."](#please-tell-me-who-you-are)
   - [View the raw files](#view-the-raw-files)
 - [Topics](#topics)
   - [Merging branches with and without conflicts](#merging-branches-with-and-without-conflicts)
     - [Documentation](#documentation)
     - [Best of Stack Overflow](#best-of-stack-overflow)
-    - [Quiz: simple merge :thinking:](#quiz-simple-merge-thinking)
-      - [Setup](#setup)
-      - [Story](#story)
-      - [Goal](#goal)
-      - [Solutions](#solutions)
-    - [Quiz: merge conflicts :thinking:](#quiz-merge-conflicts-thinking)
-      - [Setup](#setup-1)
-      - [Story](#story-1)
-      - [Goal](#goal-1)
-      - [Solutions](#solutions-1)
+    - [Quiz: simple merge :fast_forward:](#quiz-simple-merge-fast_forward)
+    - [Quiz: merge conflicts :collision:](#quiz-merge-conflicts-collision)
 
 # Start here :bulb:
 
@@ -31,7 +22,9 @@ git clone https://github.com/sjchiass/git_training.git ./git_training/.git --mir
 cd git_training/
 git config --bool core.bare false
 git reset --hard
+git config user.email "someone@example.com" && git config user.name "someone"
 ```
+The commands above will set a *local* user name and e-mail that will only affect `git_training`. Using local configurations is a good idea! If you're using git for both work and hobby, it's not a good idea to set a global configuration because you might accidentally switch the two!
 
 ![Cloning in Ubuntu](./images/clone_success.png)
 
@@ -44,20 +37,6 @@ Don't worry about breaking anything! You can always delete the `git_training` fo
 Avoid downloading the zip directly! Zip download will only download files, not the git repository. You will not have all of the git extras including branches and history!
 
 ![Avoid the Zip download](./images/download_zip_beware.png)
-
-## "Please tell me who you are."
-
-If git asks you who you are, you haven't set up your profile for the repo. This is normal.
-
-If you're using git for both work and hobby, it's not a good idea to set a global configuration. You might accidentally push to your company's repositories with your personal information.
-
-For these exercises, there's no problem in creating a fake local profile:
-
-```
-git config user.email "someone@example.com" && git config user.name "someone"
-```
-
-The settings will only be applied to your current repository.
 
 ## View the raw files
 
@@ -93,47 +72,34 @@ If you've been working on the same code, you will have to choose which pieces of
   * [What is git fast forwarding](https://stackoverflow.com/questions/29673869/what-is-git-fast-forwarding)
   * [How to resolve conflicts in a text editor and other merge advice](https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository/7589612#7589612)
 
-### Quiz: simple merge :thinking:
+### Quiz: simple merge :fast_forward:
 
-#### Setup
+__Setup__ This repository has two branches: `merge_init` and `merge_a`.
 
-This repository has two branches: `merge_init` and `merge_a`.
+__Story__ You wrote an example script in base R on `merge_init` and then forgot about it. One of your colleagues decided to improve the script in the `merge_a` branch. They've let you know that their work is done and you can merge the changes whenever you want. As the project leader, you want to incorporate these changes to the main branch.
 
-#### Story
+__Goal__ Merge `merge_a` onto `merge_init`.
 
-You wrote an example script in base R on `merge_init` and then forgot about it. One of your colleagues decided to improve the script in the `merge_a` branch. They've let you know that their work is done and you can merge the changes whenever you want. As the project leader, you want to incorporate these changes to the main branch.
+__Solutions__ [See solutions](./merge_solutions.md)
 
-#### Goal
+### Quiz: merge conflicts :collision:
 
-Merge `merge_a` onto `merge_init`.
+__Setup__ This repository has three branches: `merge_init`, `merge_a` and `merge_b`.
 
-#### Solutions
+__Story__ You wrote an example script in base R on `merge_init` and then forgot about it. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths. As the project leader, you are in charge of choosing what to keep.
 
-[See solutions](./merge_solutions.md)
-
-### Quiz: merge conflicts :thinking:
-
-#### Setup
-
-This repository has three branches: `merge_init`, `merge_a` and `merge_b`.
-
-#### Story
-
-You wrote an example script in base R on `merge_init` and then forgot about it. Two team members decided separately to convert the code to tidyverse, on branches `merge_a` and `merge_b`. They approached the task differently, and their solutions have different strengths. As the project leader, you are in charge of choosing what to keep.
-
-#### Goal
-
-Merge `merge_a` and `merge_b` together while choosing the pieces of code you like most.
+__Goal__ Merge `merge_a` and `merge_b` together while choosing the pieces of code you like most.
 
 Hint: here is how you would start this on the command-line, assuming you're already in the repo folder
 
+```console
+$ git checkout merge_a
+$ git merge merge_b
+Auto-merging iris.R
+CONFLICT (content): Merge conflict in iris.R
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
 ```
-git checkout merge_a
-git merge merge_b
-```
 
-![Unable to merge automatically](./images/merge_conflict.png)
-
-#### Solutions
-
-[See solutions](./merge_conflicts_solutions.md)
+__Solutions__ [See solutions](./merge_conflicts_solutions.md)
