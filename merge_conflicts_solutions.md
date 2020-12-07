@@ -1,8 +1,10 @@
 # Solutions for merge conflict quiz <!-- omit in toc -->
 
 - [FAQ](#faq)
-- [Command-line](#command-line)
-- [Command-line with a different diff style](#command-line-with-a-different-diff-style)
+- [Validating a solution: how to verify your success](#validating-a-solution-how-to-verify-your-success)
+- [Solutions](#solutions)
+  - [Command-line](#command-line)
+  - [Command-line with a different diff style](#command-line-with-a-different-diff-style)
 
 ## FAQ
 
@@ -14,7 +16,64 @@
   * Does the direction of the merge matter?
     * Not in this case, but it may matter in others. Whichever branch is the most "mainstream" one ought to be the target. You always want to merge your feature branch into your main branch.
 
-## Command-line
+## Validating a solution: how to verify your success
+
+Let's check what the commit tree looks like before we do the merge.
+
+```console
+|   
+| * commit 622e5e469ae056f0bafb3c5957a9adaa61862676 (HEAD -> merge_a)
+| | Author: Sebastien Chiasson <sebastien.chiasson@canada.ca>
+| | Date:   Wed Dec 2 11:32:27 2020 -0500
+| | 
+| |     Fix wording in README
+| | 
+| * commit 6cf09021b390cb451c2789b979c6693fb8670f12
+| | Author: Sebastien Chiasson <sebastien.chiasson@canada.ca>
+| | Date:   Wed Dec 2 11:21:41 2020 -0500
+| | 
+| |     Create merge_a
+| |   
+| | * commit f33a8c8c8e9c657ac6ea4bece6be4deb635f83d4 (merge_b)
+| | | Author: Sebastien Chiasson <sebastien.chiasson@canada.ca>
+| | | Date:   Wed Dec 2 11:29:47 2020 -0500
+| | | 
+| | |     Start working on README
+| | | 
+```
+
+Once the merge is complete, the two branches will combine together, and `merge_a` will continue on. Below is the commit tree, slightly modified for clarity.
+
+```console
+* commit d30164544df34e237d34a0662abf30cd5fef77be (HEAD -> merge_a)
+| Author: someone <someone@example.com>
+| Date:   Mon Dec 7 10:56:48 2020 -0500
+| 
+|     Make a test commit
+| 
+*   commit 275c2c7c53a1465418a76cf14e0d10ffa283f5c2
+|\  Merge: 622e5e4 f33a8c8
+| | Author: someone <someone@example.com>
+| | Date:   Mon Dec 7 10:53:03 2020 -0500
+| | 
+| |     Merge merge_b onto merge_a, resolve conflicts
+| | 
+| * commit d25b5fcfc97172d917c23835bef8465a1ac370eb (merge_b)
+| | Author: Sebastien Chiasson <sebastien.chiasson@canada.ca>
+| | Date:   Wed Dec 2 11:23:04 2020 -0500
+| | 
+| |     Make merge_b branch
+| | 
+* | commit 6cf09021b390cb451c2789b979c6693fb8670f12
+|/  Author: Sebastien Chiasson <sebastien.chiasson@canada.ca>
+|   Date:   Wed Dec 2 11:21:41 2020 -0500
+|   
+|       Create merge_a
+| 
+```
+## Solutions
+
+### Command-line
 
 Merge conflicts on the command-line are indicated by markers in text files. In this short demo you'll see examples of these.
 
@@ -108,7 +167,7 @@ $ git commit -m "Merge of merge_b into merge_a"
 
 If you look at the commit graph, you'll see that the two branches have fused together into a new commit.
 
-## Command-line with a different diff style
+### Command-line with a different diff style
 
 As seen in [this Stack Overflow post](https://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git-repository/7589612#7589612), you can use a different style for the markers.
 
