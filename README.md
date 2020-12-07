@@ -2,7 +2,7 @@
 
 - [Start here :bulb:](#start-here-bulb)
   - [How to copy this to your computer](#how-to-copy-this-to-your-computer)
-  - [Caution](#caution)
+  - [Download a zip file](#download-a-zip-file)
   - [View the raw files](#view-the-raw-files)
 - [Topics](#topics)
   - [Merging branches with and without conflicts](#merging-branches-with-and-without-conflicts)
@@ -32,11 +32,13 @@ The repository with all of its extras will appear in a folder called `git_traini
 
 Don't worry about breaking anything! You can always delete the `git_training` folder and `clone` yourself a replacement.
 
-## Caution
+## Download a zip file
 
-Avoid downloading the zip directly! Zip download will only download files, not the git repository. You will not have all of the git extras including branches and history!
+You can find specially-made zip files that include the configured git repository from the above commands.
 
-![Avoid the Zip download](./images/download_zip_beware.png)
+The files called `git_training.zip` here are repository copies: <https://github.com/sjchiass/git_training/releases/tag/v0.1.0>
+
+The other zip files only have the source code, and you won't have a git repository when you open them. In order to do the quiz questions below, you need to have a copy of the git repository.
 
 ## View the raw files
 
