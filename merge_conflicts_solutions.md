@@ -5,6 +5,7 @@
 - [Solutions](#solutions)
   - [Command-line](#command-line)
   - [Command-line with a different diff style](#command-line-with-a-different-diff-style)
+  - [`git mergetool`  on Linux](#git-mergetool--on-linux)
 
 ## FAQ
 
@@ -178,7 +179,7 @@ $ git config merge.conflictstyle diff3
 Then
 
 ```console
- git merge merge_b
+$ git merge merge_b
 Auto-merging iris.R
 CONFLICT (content): Merge conflict in iris.R
 Auto-merging README.md
@@ -217,4 +218,66 @@ iris_pivot <- iris %>%
 
 # Show results
 View(means)
+```
+### `git mergetool`  on Linux
+
+Once you've started your merge with
+
+```console
+$ git merge merge_b
+Auto-merging iris.R
+CONFLICT (content): Merge conflict in iris.R
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+You can use the command `git mergetool` to automatically open a GUI to help you. You can configure git to always use your tool of choice, but it will use whatever it can find by default. `sudo apt install meld` to get meld in Ubuntu.
+
+```console
+$ git mergetool
+
+This message is displayed because 'merge.tool' is not configured.
+See 'git mergetool --tool-help' or 'git help config' for more details.
+'git mergetool' will now attempt to use one of the following tools:
+meld opendiff kdiff3 tkdiff xxdiff tortoisemerge gvimdiff diffuse diffmerge ecmerge p4merge araxis bc codecompare smerge emerge vimdiff
+Merging:
+README.md
+iris.R
+
+Normal merge conflict for 'README.md':
+  {local}: modified file
+  {remote}: modified file
+Hit return to start merge resolution tool (meld): 
+
+Normal merge conflict for 'iris.R':
+  {local}: modified file
+  {remote}: modified file
+Hit return to start merge resolution tool (meld):
+```
+In meld you can click the arrows to move segments of the file in whatever direction you want. To the left is the source branch, in the middle is the original branch (the common ancestor), and to the right is the target branch.
+
+![A simple merge conflict in meld](./images/merge/meld_readme_a.png)
+
+Once you're done, click the little save button.
+
+![The resolved README conflict in meld](./images/merge/meld_readme_b.png)
+
+A more complicated merge conflict looks like this:
+
+![The more complicated iris.R conflict in meld](./images/merge/meld_iris_a.png)
+
+Each pane in meld is its own text editor. You can copy-paste segments from any of the panes to get the code looking right.
+
+Notice the parts of the left and right panes that are uncoloured: these are the segments that we're keeping in the merge.
+
+![The completed iris.R resolution in meld](./images/merge/meld_iris_b.png)
+
+**Note**: when using a mergetool, git will keep `.orig` files in the folder. These are backups of the originals. Either delete these files yourself or add `.orig` to your `.gitignore`.
+
+You can then commit the merge as you do normally:
+
+```console
+$ git commit -m "Merge files with meld"
+[merge_a aec170b] Merge files with meld
 ```
